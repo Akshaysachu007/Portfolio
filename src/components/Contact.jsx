@@ -98,7 +98,7 @@ function Contact() {
                             ))}
                         </h2>
 
-                        <motion.p variants={fadeUp} className="mt-7 max-w-[28rem] text-[15px] leading-relaxed text-neutral-400">
+                        <motion.p variants={fadeUp} className="mt-6 sm:mt-7 max-w-[28rem] text-base leading-[1.65] text-neutral-300">
                             Have a project, role, or idea in mind? Send me a message and I'll reply personally.
                         </motion.p>
 
@@ -129,8 +129,8 @@ function Contact() {
                                             <a href={m.href} className="flex min-w-0 items-center gap-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300">
                                                 <Icon size={18} strokeWidth={1.6} className="shrink-0 text-neutral-500 transition-colors duration-500 group-hover:text-amber-300" />
                                                 <span className="min-w-0 transition-transform duration-500 ease-out group-hover:translate-x-1">
-                                                    <span className="block text-xs text-neutral-500">{m.label}</span>
-                                                    <span className="block truncate text-[15px] text-neutral-100">{m.value}</span>
+                                                    <span className="block text-[13px] text-neutral-400 sm:text-xs">{m.label}</span>
+                                                    <span className="block truncate text-base text-neutral-100">{m.value}</span>
                                                 </span>
                                             </a>
 
@@ -181,7 +181,7 @@ function Contact() {
                             );
                         })}
                     </div>
-                    <p className="text-xs text-neutral-600">© {new Date().getFullYear()} Akshay R. All rights reserved.</p>
+                    <p className="text-[13px] text-neutral-400 sm:text-xs">© {new Date().getFullYear()} Akshay R. All rights reserved.</p>
                 </motion.div>
             </motion.div>
 
