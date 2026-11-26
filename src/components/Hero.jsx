@@ -127,7 +127,7 @@ function Hero() {
   };
 
   return (
-    <div id="home" className="min-h-screen flex flex-col bg-white">
+    <div id="home" className="lg:min-h-screen flex flex-col bg-white">
       <style>{heroCss}</style>
 
       <nav className="relative flex items-center justify-between px-5 py-5 sm:px-10 sm:py-7 lg:px-12 bg-white">
@@ -244,7 +244,7 @@ function Hero() {
 
       <main
         ref={mainRef}
-        className="group/hero relative flex flex-1 flex-col justify-between w-full overflow-hidden bg-white text-[#1F1F1F] px-5 pb-8 pt-2 sm:px-10 sm:pb-10 lg:px-12 lg:pb-12 lg:pt-4"
+        className="group/hero relative flex flex-col lg:flex-1 lg:justify-between w-full overflow-hidden bg-white text-[#1F1F1F] px-5 pb-10 pt-2 sm:px-10 sm:pb-12 lg:px-12 lg:pb-12 lg:pt-4"
         style={{ fontFamily: "'Archivo', system-ui, sans-serif" }}
       >
         {/* Soft amber glow that follows the cursor (decorative, sits behind everything) */}
@@ -257,10 +257,17 @@ function Hero() {
           }}
         />
 
-        {/* Top bar — social links aligned to the right edge */}
-        <header className="relative z-20 flex items-center justify-end">
+        {/* Top bar — balanced on mobile, right-aligned on desktop */}
+        <header className="relative z-20 flex items-center justify-between lg:justify-end">
+          <span
+            className="hero-rise text-xs font-semibold uppercase tracking-[0.16em] text-[#1F1F1F]/60 sm:hidden"
+            style={{ "--d": "0.3s" }}
+          >
+            Follow me
+          </span>
+
           <nav
-            className="flex items-center gap-3 sm:gap-5"
+            className="flex items-center gap-2.5 sm:gap-5"
             aria-label="Social links"
           >
             {/* Label with subtle hover opacity & translate */}
@@ -319,7 +326,7 @@ function Hero() {
             - Photo sits center-large (cols 3-8) at full hero height
             - Arrow CTA sits bottom-left (cols 1-2)
             - Bio + Accordion sits right (cols 9-12) */}
-        <div className="relative z-10 mt-6 flex-1 grid grid-cols-1 items-end gap-8 lg:mt-2 lg:grid-cols-12 lg:gap-10">
+        <div className="relative z-10 mt-5 flex flex-col gap-6 sm:gap-8 lg:mt-2 lg:flex-1 lg:grid lg:grid-cols-12 lg:items-end lg:gap-10">
           {/* "Hi, there" + Headline Block overlapping the top-left of the photo */}
           <div className="order-1 relative z-20 lg:col-start-1 lg:col-end-8 lg:row-start-1 lg:self-start lg:pt-2">
             {/* Tag Pill behind the top edge of the headline */}
@@ -355,7 +362,7 @@ function Hero() {
           </div>
 
           {/* Photo — sized like the original large centerpiece, tucked beneath the title block */}
-          <div className="hero-photo order-2 relative z-10 flex h-[280px] w-full items-center justify-center overflow-hidden bg-[#ffffff] cursor-pointer sm:h-[420px] lg:col-start-3 lg:col-end-9 lg:row-start-1 lg:self-end lg:mt-20 lg:h-[500px] xl:h-[560px]">
+          <div className="hero-photo order-2 relative z-10 flex aspect-[4/3] max-h-[300px] w-full items-center justify-center overflow-hidden bg-[#ffffff] cursor-pointer sm:aspect-auto sm:max-h-none sm:h-[420px] lg:col-start-3 lg:col-end-9 lg:row-start-1 lg:self-end lg:mt-20 lg:h-[500px] xl:h-[560px]">
             <img
               src={iconImg}
               alt="Akshay R"
@@ -399,9 +406,9 @@ function Hero() {
           </div>
 
           {/* Right column */}
-          <aside className="order-3 relative z-20 flex flex-col justify-between gap-8 lg:order-none lg:col-start-9 lg:col-end-13 lg:row-start-1 lg:self-stretch lg:pt-8">
+          <aside className="order-3 relative z-20 flex flex-col justify-between gap-6 sm:gap-8 lg:order-none lg:col-start-9 lg:col-end-13 lg:row-start-1 lg:self-stretch lg:pt-8">
             <p
-              className="hero-rise text-xl leading-snug sm:text-2xl lg:text-[1.5rem]"
+              className="hero-rise text-lg leading-snug sm:text-2xl lg:text-[1.5rem]"
               style={{ "--d": "0.9s" }}
             >
               I enjoy turning ideas into products that actually work in the real
