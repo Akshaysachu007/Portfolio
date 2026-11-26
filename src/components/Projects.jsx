@@ -1,50 +1,73 @@
-import { useState } from "react";
-import { motion, MotionConfig } from "motion/react";
+import { useRef } from "react";
+import {
+    motion,
+    MotionConfig,
+    useScroll,
+    useTransform,
+} from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 
 const projects = [
     {
         number: "01",
+        year: "2026",
         title: "Janseva AI",
         category: "AI / Backend",
         description:
             "AI-powered citizen complaint intelligence platform designed to extract, classify and organize grievance information.",
         technologies: ["Python", "Django", "React", "AI", "OCR", "NLP"],
-        github: "#",
+        github: "https://github.com/Akshaysachu007/janseva_mla_portal",
         live: "#",
+        // Add cover image path or import here later, e.g. image: "/covers/janseva.jpg"
+        image: "/projects_cover/janseva.png",
     },
-
     {
         number: "02",
+        year: "2026",
         title: "Doctor AI",
         category: "AI / RAG",
         description:
             "Document intelligence application that allows users to upload medical documents and interact with their content using retrieval-augmented generation.",
         technologies: ["Django", "React", "RAG", "ChromaDB", "Ollama", "LLM"],
-        github: "#",
+        github: "https://github.com/Akshaysachu007/Doctor_Ai",
         live: "#",
+        image: "/projects_cover/doctor_ai.png",
     },
-
     {
         number: "03",
+        year: "2026",
         title: "AI Interview",
         category: "AI / Full Stack",
         description:
             "AI-powered interview platform designed to create a structured interview experience with intelligent evaluation and feedback.",
         technologies: ["Python", "Django", "React", "LLM", "AI"],
-        github: "#",
+        github: "https://github.com/Akshaysachu007/ai_interview_platform",
         live: "#",
+        image: "/projects_cover/ai_interview.jpg",
     },
-
     {
         number: "04",
+        year: "2026",
         title: "Emergency Service System",
         category: "Full Stack",
         description:
             "Role-based service platform connecting customers with service providers through request, acceptance, completion and review workflows.",
         technologies: ["Django", "DRF", "React", "PostgreSQL", "JWT"],
+        github: "https://github.com/Akshaysachu007/Emergency_Service",
+        live: "#",
+        image: "/projects_cover/emergency.png",
+    },
+    {
+        number: "05",
+        year: "2026",
+        title: "Court Ledger",
+        category: "Blockchain / Full Stack",
+        description:
+            "Tamper-evident judicial evidence verification system where clerks anchor document CIDs on-chain via Solidity smart contracts, allowing judges to cross-check database records and receive instant alerts if evidence is altered.",
+        technologies: ["Solidity", "Blockchain", "IPFS / CID", "Smart Contracts", "Node.js", "MongoDB"],
         github: "#",
         live: "#",
+        image: "/projects_cover/court_ledger.png",
     },
 ];
 
@@ -54,13 +77,222 @@ const headingContainer = {
     hidden: {},
     show: { transition: { staggerChildren: 0.14 } },
 };
+
 const headingLine = {
     hidden: { y: "110%" },
     show: { y: 0, transition: { duration: 0.85, ease: EASE } },
 };
 
+function CoverPlaceholder({ project }) {
+    return (
+        <div className="relative flex h-full w-full flex-col justify-between overflow-hidden bg-[#0B0B0B] p-6 text-white sm:p-8">
+            {/* Subtle monochrome ambient glow */}
+            <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0"
+                style={{
+                    background:
+                        "radial-gradient(circle at 70% 35%, rgba(255,255,255,0.13) 0%, rgba(255,255,255,0.03) 38%, transparent 70%)",
+                }}
+            />
+
+            {/* Subtle architectural grid */}
+            <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 opacity-[0.14]"
+                style={{
+                    backgroundImage:
+                        "linear-gradient(to right, rgba(255,255,255,0.18) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.18) 1px, transparent 1px)",
+                    backgroundSize: "40px 40px",
+                }}
+            />
+
+            {/* Top metadata */}
+            <div className="relative z-10 flex items-center justify-between text-[11px] font-medium uppercase tracking-[0.2em] text-white/40">
+                <span>{project.number} / Preview</span>
+                <span className="rounded-full border border-white/15 px-3 py-1 text-[10px] text-white/55">
+                    Cover Soon
+                </span>
+            </div>
+
+            {/* Center geometric mark */}
+            <div className="relative z-10 my-auto flex items-center justify-center py-8">
+                <div className="flex items-center gap-3 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/card:scale-105">
+                    <span className="h-8 w-8 rounded-md bg-white/95 sm:h-10 sm:w-10" />
+                    <span className="h-8 w-8 rounded-full bg-white/80 sm:h-10 sm:w-10" />
+                    <span className="h-8 w-8 rounded-full border border-white/40 bg-white/10 backdrop-blur-sm sm:h-10 sm:w-10" />
+                </div>
+            </div>
+
+            {/* Bottom caption */}
+            <div className="relative z-10 flex items-center justify-between border-t border-white/10 pt-4 text-[11px] uppercase tracking-[0.18em] text-white/35">
+                <span>{project.category}</span>
+                <span>{project.year}</span>
+            </div>
+        </div>
+    );
+}
+
+function ProjectCard({ project, index, total, progress, range, targetScale }) {
+    const cardRef = useRef(null);
+
+    const scale = useTransform(progress, range, [1, targetScale]);
+    const dimOpacity = useTransform(progress, range, [0, 0.16]);
+
+    const stickyTop = `calc(5rem + ${index * 18}px)`;
+
+    return (
+        <div
+            ref={cardRef}
+            className="sticky flex items-start justify-center pb-14 sm:pb-20 last:pb-0"
+            style={{ top: stickyTop }}
+        >
+            <motion.article
+                style={{
+                    scale,
+                    transformOrigin: "top center",
+                }}
+                className="
+          group/card
+          relative
+          w-full
+          overflow-hidden
+          rounded-[24px]
+          border
+          border-black/10
+          bg-[#F7F7F5]
+          text-black
+          shadow-[0_-18px_50px_rgba(0,0,0,0.55)]
+          sm:rounded-[32px]
+        "
+            >
+                {/* Subtle darkening overlay as the card recedes into the stack */}
+                <motion.div
+                    aria-hidden="true"
+                    style={{ opacity: dimOpacity }}
+                    className="pointer-events-none absolute inset-0 z-20 bg-black"
+                />
+
+                <div className="grid grid-cols-1 gap-8 p-6 sm:p-10 lg:grid-cols-[1.05fr_1fr] lg:gap-12 lg:p-12">
+                    {/* Left Column: Index, Details, Tech, CTA */}
+                    <div className="flex flex-col justify-between gap-8">
+                        {/* Top: Number badge + stack indicator */}
+                        <div className="flex items-center justify-between">
+                            <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/15 text-xs font-semibold tracking-[0.12em] text-black/75">
+                                {project.number}
+                            </span>
+
+                            <span className="text-xs font-medium uppercase tracking-[0.2em] text-black/35">
+                                {index + 1} / {total}
+                            </span>
+                        </div>
+
+                        {/* Middle: Meta, Title, Description, Tech */}
+                        <div>
+                            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-black/45">
+                                {project.year} • {project.category}
+                            </p>
+
+                            <h3 className="mt-3 text-3xl font-black uppercase leading-[0.98] tracking-[-0.045em] text-black sm:text-4xl lg:text-[2.85rem]">
+                                {project.title}
+                            </h3>
+
+                            <p className="mt-4 max-w-[44ch] text-base leading-relaxed text-black/65 sm:text-[17px]">
+                                {project.description}
+                            </p>
+
+                            <div className="mt-6 flex flex-wrap gap-2">
+                                {project.technologies.map((tech) => (
+                                    <span
+                                        key={tech}
+                                        className="rounded-full border border-black/10 bg-black/[0.03] px-3 py-1 text-xs font-medium text-black/70"
+                                    >
+                                        {tech}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Bottom: Action Buttons */}
+                        <div className="flex flex-wrap items-center gap-4 pt-2">
+                            <a
+                                href={project.github}
+                                target={project.github !== "#" ? "_blank" : undefined}
+                                rel={project.github !== "#" ? "noreferrer" : undefined}
+                                className="
+                  group/link
+                  relative
+                  inline-flex
+                  items-center
+                  gap-3
+                  overflow-hidden
+                  rounded-full
+                  border
+                  border-black/20
+                  px-6
+                  py-3
+                  text-xs
+                  font-semibold
+                  uppercase
+                  tracking-[0.14em]
+                  text-black
+                  transition-colors
+                  duration-500
+                  hover:border-black
+                "
+                            >
+                                <span
+                                    aria-hidden="true"
+                                    className="absolute inset-0 translate-y-full bg-black transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/link:translate-y-0"
+                                />
+                                <span className="relative z-10 transition-colors duration-500 group-hover/link:text-white">
+                                    View Project
+                                </span>
+                                <ArrowUpRight
+                                    size={15}
+                                    strokeWidth={1.8}
+                                    className="relative z-10 transition-all duration-500 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5 group-hover/link:text-white"
+                                />
+                            </a>
+
+                            {project.live && project.live !== "#" && (
+                                <a
+                                    href={project.live}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-black/55 transition-colors hover:text-black"
+                                >
+                                    Live Demo
+                                    <ArrowUpRight size={14} strokeWidth={1.8} />
+                                </a>
+                            )}
+                        </div>
+                    </div>
+
+                    {/* Right Column: Cover Image or Bespoke Placeholder */}
+                    <div className="relative min-h-[240px] overflow-hidden rounded-2xl border border-black/10 bg-[#0B0B0B] sm:min-h-[320px] lg:min-h-[390px]">
+                        {project.image ? (
+                            <img
+                                src={project.image}
+                                alt={project.title}
+                                className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/card:scale-[1.03]"
+                            />
+                        ) : (
+                            <CoverPlaceholder project={project} />
+                        )}
+                    </div>
+                </div>
+            </motion.article>
+        </div>
+    );
+}
+
 function Projects() {
-    const [active, setActive] = useState(null);
+    const stackRef = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: stackRef,
+        offset: ["start start", "end end"],
+    });
 
     return (
         <MotionConfig reducedMotion="user">
@@ -69,10 +301,9 @@ function Projects() {
                 className="bg-black px-6 py-24 text-white sm:px-10 md:py-32 lg:px-12 lg:py-40"
             >
                 <div className="mx-auto max-w-[1400px]">
-
                     {/* =========================================
-              HEADER
-          ========================================= */}
+                        HEADER
+                    ========================================= */}
                     <motion.div
                         initial={{ scaleX: 0 }}
                         whileInView={{ scaleX: 1 }}
@@ -84,7 +315,6 @@ function Projects() {
                     <div className="grid gap-8 pt-8 md:grid-cols-[180px_1fr]">
                         <div className="flex items-start gap-3 md:pt-5">
                             <span className="mt-1.5 h-2 w-2 rounded-full bg-white" />
-
                             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-white/55">
                                 Projects
                             </p>
@@ -130,140 +360,31 @@ function Projects() {
                         </div>
                     </div>
 
-
                     {/* =========================================
-              PROJECT LIST
-          ========================================= */}
-                    <div
-                        className="mt-20 border-t border-white/15"
-                        onMouseLeave={() => setActive(null)}
-                    >
-                        {projects.map((project, index) => (
-                            <article
-                                key={project.number}
-                                onMouseEnter={() => setActive(index)}
-                                className={`group/row relative transition-opacity duration-500 ${active !== null && active !== index ? "opacity-40" : "opacity-100"
-                                    }`}
-                            >
-                                <motion.div
-                                    initial={{ opacity: 0, y: 40 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true, amount: 0.15 }}
-                                    transition={{ duration: 0.8, ease: EASE }}
-                                    className="
-                    relative
-                    grid
-                    gap-6
-                    border-b
-                    border-white/15
-                    py-12
-                    md:grid-cols-[180px_1fr_auto]
-                    md:items-center
-                    md:gap-12
-                    md:py-16
-                  "
-                                >
-                                    {/* line that draws across the bottom on hover */}
-                                    <span
-                                        aria-hidden="true"
-                                        className="absolute -bottom-px left-0 h-px w-full origin-left scale-x-0 bg-white transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/row:scale-x-100"
-                                    />
+                        STICKY STACKED PROJECT CARDS
+                    ========================================= */}
+                    <div ref={stackRef} className="relative mt-20 sm:mt-24">
+                        {projects.map((project, index) => {
+                            const targetScale = 1 - (projects.length - 1 - index) * 0.04;
+                            const start = index / projects.length;
 
-                                    {/* Number + category */}
-                                    <div className="flex items-center gap-4 md:block">
-                                        <span className="block text-base font-semibold text-white/40 transition-colors duration-500 group-hover/row:text-white">
-                                            {project.number}
-                                        </span>
-
-                                        <span className="block text-sm uppercase tracking-[0.15em] text-white/45 md:mt-3">
-                                            {project.category}
-                                        </span>
-                                    </div>
-
-                                    {/* Title, description, tech */}
-                                    <div>
-                                        <h3
-                                            className="
-                        text-[clamp(2.4rem,5.5vw,5.5rem)]
-                        font-black
-                        uppercase
-                        leading-[0.95]
-                        tracking-[-0.055em]
-                        text-white/90
-                        transition-all
-                        duration-500
-                        ease-[cubic-bezier(0.22,1,0.36,1)]
-                        group-hover/row:translate-x-3
-                        group-hover/row:text-white
-                      "
-                                        >
-                                            {project.title}
-                                        </h3>
-
-                                        <p className="mt-6 max-w-[600px] text-lg leading-8 text-white/55 transition-colors duration-500 group-hover/row:text-white/80">
-                                            {project.description}
-                                        </p>
-
-                                        <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2">
-                                            {project.technologies.map((technology) => (
-                                                <span
-                                                    key={technology}
-                                                    className="text-sm font-medium text-white/35 transition-colors duration-500 group-hover/row:text-white/70"
-                                                >
-                                                    {technology}
-                                                </span>
-                                            ))}
-                                        </div>
-                                    </div>
-
-                                    {/* Link */}
-                                    <a
-                                        href={project.github}
-                                        className="
-                      group/link
-                      relative
-                      inline-flex
-                      items-center
-                      gap-3
-                      self-start
-                      overflow-hidden
-                      rounded-full
-                      border
-                      border-white/30
-                      px-7
-                      py-3.5
-                      text-sm
-                      font-semibold
-                      uppercase
-                      tracking-[0.12em]
-                      transition-colors
-                      duration-500
-                      hover:border-white
-                      md:self-center
-                    "
-                                    >
-                                        <span
-                                            aria-hidden="true"
-                                            className="absolute inset-0 translate-y-full bg-white transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/link:translate-y-0"
-                                        />
-                                        <span className="relative z-10 transition-colors duration-500 group-hover/link:text-black">
-                                            GitHub
-                                        </span>
-                                        <ArrowUpRight
-                                            size={16}
-                                            strokeWidth={1.8}
-                                            className="relative z-10 transition-all duration-500 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5 group-hover/link:text-black"
-                                        />
-                                    </a>
-                                </motion.div>
-                            </article>
-                        ))}
+                            return (
+                                <ProjectCard
+                                    key={project.number}
+                                    project={project}
+                                    index={index}
+                                    total={projects.length}
+                                    progress={scrollYProgress}
+                                    range={[start, 1]}
+                                    targetScale={targetScale}
+                                />
+                            );
+                        })}
                     </div>
 
-
                     {/* =========================================
-              FUTURE PROJECTS
-          ========================================= */}
+                        FUTURE PROJECTS
+                    ========================================= */}
                     <motion.div
                         initial={{ opacity: 0, y: 24 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -271,12 +392,14 @@ function Projects() {
                         transition={{ duration: 0.8, ease: EASE }}
                         className="
               group/cta
+              mt-20
               flex
               flex-col
               gap-6
-              border-b
+              border-y
               border-white/15
               py-12
+              sm:mt-28
               sm:flex-row
               sm:items-center
               sm:justify-between
@@ -299,7 +422,6 @@ function Projects() {
                             </span>
                         </span>
                     </motion.div>
-
                 </div>
             </section>
         </MotionConfig>

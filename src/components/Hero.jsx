@@ -1,8 +1,9 @@
 import { Menu } from "lucide-react";
 import iconImg from "../assets/Icon.jpeg";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { FaGithub, FaLinkedinIn, FaInstagram } from "react-icons/fa";
 import { Phone, Download } from "lucide-react";
+
 const socials = [
   {
     label: "GitHub",
@@ -20,6 +21,7 @@ const socials = [
     icon: FaInstagram,
   },
 ];
+
 const menuLinks = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
@@ -28,6 +30,7 @@ const menuLinks = [
   { label: "Experience", href: "#experience" },
   { label: "Contact", href: "#contact" },
 ];
+
 const skills = [
   {
     title: "Full-stack development",
@@ -111,8 +114,6 @@ function Hero() {
   const [open, setOpen] = useState(1);
   const mainRef = useRef(null);
 
-  /* Smooth cursor glow + soft parallax (desktop pointers only) */
-
   /* Magnetic pull on the arrow button */
   const magnet = (e) => {
     const el = e.currentTarget;
@@ -126,12 +127,10 @@ function Hero() {
   };
 
   return (
-    <>
+    <div id="home" className="min-h-screen flex flex-col bg-white">
       <style>{heroCss}</style>
 
-      {/* FIX: added `relative` (logo was centering against the page, not the nav)
-          FIX: px now matches the hero's px so left/right edges line up */}
-      <nav className="relative flex items-center justify-between px-6 py-8 sm:px-10 lg:px-12 bg-white">
+      <nav className="relative flex items-center justify-between px-6 py-7 sm:px-10 lg:px-12 bg-white">
         {/* Menu */}
         <div
           className="menu-wrap group relative hero-rise"
@@ -242,9 +241,10 @@ function Hero() {
           </a>
         </div>
       </nav>
+
       <main
         ref={mainRef}
-        className="group/hero relative min-h-screen w-full overflow-hidden bg-white text-[#1F1F1F] px-6 py-8 sm:px-10 lg:px-12 lg:py-14"
+        className="group/hero relative flex flex-1 flex-col justify-between w-full overflow-hidden bg-white text-[#1F1F1F] px-6 pb-8 pt-2 sm:px-10 sm:pb-10 lg:px-12 lg:pb-12 lg:pt-4"
         style={{ fontFamily: "'Archivo', system-ui, sans-serif" }}
       >
         {/* Soft amber glow that follows the cursor (decorative, sits behind everything) */}
@@ -257,23 +257,15 @@ function Hero() {
           }}
         />
 
-        {/* Top bar — FIX: flex-wrap so the tag + social boxes don't overflow on phones */}
-        <header className="relative z-20 flex flex-wrap items-start justify-between gap-4">
-          {/* Tag Pill with smooth lift, background shift, shadow and a light sweep */}
-          <span
-            className="hero-rise relative overflow-hidden bg-amber-200 px-8 py-3 text-2xl text-white font-extrabold uppercase sm:px-12 sm:py-4 sm:text-3xl cursor-pointer select-none transition-all duration-300 ease-out hover:bg-amber-300 hover:text-slate-900 hover:-translate-y-1 hover:shadow-lg active:translate-y-0 before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/50 before:to-transparent before:transition-transform before:duration-700 hover:before:translate-x-full"
-            style={{ fontStretch: "125%", "--d": "0.15s" }}
-          >
-            Hi, there
-          </span>
-
+        {/* Top bar — social links aligned to the right edge */}
+        <header className="relative z-20 flex items-center justify-end">
           <nav
-            className="flex items-center gap-3 sm:gap-5 lg:absolute lg:right-[4%]"
+            className="flex items-center gap-3 sm:gap-5"
             aria-label="Social links"
           >
             {/* Label with subtle hover opacity & translate */}
             <span
-              className="hero-rise hidden text-base text-[#1F1F1F]/70 sm:inline sm:mr-10 transition-all duration-300 ease-out hover:text-[#1F1F1F] hover:translate-x-1 cursor-default"
+              className="hero-rise hidden text-base text-[#1F1F1F]/70 sm:inline sm:mr-6 transition-all duration-300 ease-out hover:text-[#1F1F1F] hover:translate-x-1 cursor-default"
               style={{ "--d": "0.3s" }}
             >
               Follow me
@@ -322,151 +314,153 @@ function Hero() {
           </nav>
         </header>
 
-        {/* Headline (sits on top of the photo)
-                  FIX: font size is now viewport-relative and smaller on desktop so it no longer runs
-                  into the right column; nowrap keeps the 2 lines intact; top moved to 14% */}
-        <h1
-          className="relative z-20 mt-8 text-[8vw] font-black uppercase leading-[0.92] tracking-tight lg:absolute lg:left-12 lg:top-[14%] lg:mt-0 lg:whitespace-nowrap lg:text-[5.6vw] cursor-pointer transition-all duration-500 ease-out hover:scale-[1.01] hover:tracking-normal active:scale-100"
-          style={{
-            fontStretch: "125%",
-            translate:
-              "calc(var(--px, 0) * -0.5px) calc(var(--py, 0) * -0.5px)",
-          }}
-        >
-          <span
-            className="hero-line inline-block transition-colors duration-300 ease-out hover:text-amber-900"
-            style={{ "--d": "0.45s" }}
-          >
-            Akshay R
-          </span>
-          <br />
-          <span
-            className="hero-line inline-block transition-colors duration-300 ease-out hover:text-amber-900"
-            style={{ "--d": "0.6s" }}
-          >
-            is right here!
-          </span>
-        </h1>
-        {/* Photo — FIX: top 30.7% -> 26% so the headline's 2nd line overlaps the photo */}
-        <div className="hero-photo relative z-10 mt-6 w-full bg-[#ffffff] lg:absolute lg:bottom-0 lg:left-[20.3%] lg:top-[26%] lg:mt-0 lg:w-[48.7%] flex items-center justify-center overflow-hidden cursor-pointer">
-          <img
-            src={iconImg}
-            alt="Akshay R"
-            className="hero-img h-full w-full object-contain m-9 transition-all duration-700 ease-out hover:scale-110 hover:brightness-105"
-            style={{
-              translate: "calc(var(--px, 0) * 1px) calc(var(--py, 0) * 1px)",
-            }}
-          />
-        </div>
+        {/* Main 12-column editorial composition:
+            - Title + "Hi, there" block sits top-left (cols 1-7) and overlaps the top-left of the photo
+            - Photo sits center-large (cols 3-8) at full hero height
+            - Arrow CTA sits bottom-left (cols 1-2)
+            - Bio + Accordion sits right (cols 9-12) */}
+        <div className="relative z-10 mt-6 flex-1 grid grid-cols-1 items-end gap-8 lg:mt-2 lg:grid-cols-12 lg:gap-10">
+          {/* "Hi, there" + Headline Block overlapping the top-left of the photo */}
+          <div className="order-1 relative z-20 lg:col-start-1 lg:col-end-8 lg:row-start-1 lg:self-start lg:pt-2">
+            {/* Tag Pill behind the top edge of the headline */}
+            <span
+              className="hero-rise relative z-10 inline-block overflow-hidden bg-amber-200 px-8 py-3 text-2xl text-white font-extrabold uppercase sm:px-12 sm:py-4 sm:text-3xl cursor-pointer select-none transition-all duration-300 ease-out hover:bg-amber-300 hover:text-slate-900 hover:-translate-y-1 hover:shadow-lg active:translate-y-0 before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/50 before:to-transparent before:transition-transform before:duration-700 hover:before:translate-x-full"
+              style={{ fontStretch: "125%", "--d": "0.15s" }}
+            >
+              Hi, there
+            </span>
 
-        {/* Arrow button */}
-        <a
-          href="#projects"
-          aria-label="View my work"
-          onMouseMove={magnet}
-          onMouseLeave={unmagnet}
-          style={{
-            "--d": "1.1s",
-            transition:
-              "background-color .3s, color .3s, transform .5s cubic-bezier(.22,1,.36,1)",
-          }}
-          className="hero-rise group relative z-20 mt-8 flex h-16 w-16 items-center justify-center border border-[#1F1F1F] hover:bg-[#1F1F1F] hover:text-[#FDDA66] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1F1F1F] lg:absolute lg:bottom-[6.5%] lg:left-12 lg:mt-0 lg:h-[132px] lg:w-[132px]"
-        >
-          {/* attention ring */}
-          <span
-            aria-hidden="true"
-            className="hero-ring pointer-events-none absolute inset-0 border border-[#1F1F1F] group-hover:invisible"
-          />
-          <svg
-            viewBox="0 0 64 64"
-            className="h-10 w-10 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 lg:h-16 lg:w-16"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            aria-hidden="true"
-          >
-            <path d="M12 52L52 12M24 12h28v28" />
-          </svg>
-        </a>
+            <h1
+              className="relative z-20 -mt-5 sm:-mt-6 lg:-mt-7 text-[10vw] font-black uppercase leading-[0.92] tracking-tight sm:text-[8vw] lg:text-[5.2vw] cursor-pointer transition-all duration-500 ease-out hover:scale-[1.01] hover:tracking-normal active:scale-100"
+              style={{
+                fontStretch: "125%",
+                translate:
+                  "calc(var(--px, 0) * -0.5px) calc(var(--py, 0) * -0.5px)",
+              }}
+            >
+              <span
+                className="hero-line inline-block transition-colors duration-300 ease-out hover:text-amber-900"
+                style={{ "--d": "0.45s" }}
+              >
+                Akshay R
+              </span>
+              <br />
+              <span
+                className="hero-line inline-block transition-colors duration-300 ease-out hover:text-amber-900"
+                style={{ "--d": "0.6s" }}
+              >
+                is right here!
+              </span>
+            </h1>
+          </div>
 
-        {/* Right column
-                  FIX: top aligned with the photo (26%), bottom aligned with the arrow button (6.5%),
-                  paragraph at the top / accordion at the bottom via justify-between, so nothing
-                  gets cut off by overflow-hidden on shorter screens */}
-        <aside
-          className="
-    relative
-    z-20
-    mt-10
-    lg:absolute
-    lg:bottom-[6.5%]
-    lg:right-[5%]
-    lg:top-[26%]
-    lg:mt-0
-    lg:flex
-    lg:w-[21%]
-    lg:min-w-75
-    lg:flex-col
-    lg:justify-between
-  "
-        >
-          <p
-            className="hero-rise text-xl leading-snug sm:text-2xl lg:text-[1.65rem]"
-            style={{ "--d": "0.9s" }}
-          >
-                      I enjoy turning ideas into products that actually work in the real world. From backend architecture to AI-powered features and polished interfaces, I focus on building reliable, user-centric applications that solve meaningful problems.
-          </p>
+          {/* Photo — sized like the original large centerpiece, tucked beneath the title block */}
+          <div className="hero-photo order-2 relative z-10 flex h-[360px] w-full items-center justify-center overflow-hidden bg-[#ffffff] cursor-pointer sm:h-[440px] lg:col-start-3 lg:col-end-9 lg:row-start-1 lg:self-end lg:mt-20 lg:h-[500px] xl:h-[560px]">
+            <img
+              src={iconImg}
+              alt="Akshay R"
+              className="hero-img h-full w-full object-contain transition-all duration-700 ease-out hover:scale-110 hover:brightness-105"
+              style={{
+                translate: "calc(var(--px, 0) * 1px) calc(var(--py, 0) * 1px)",
+              }}
+            />
+          </div>
 
-          <div className="mt-10 lg:mt-0">
-            {skills.map((s, i) => {
-              const isOpen = open === i;
-              return (
-                <div
-                  key={s.title}
-                  className="hero-rise group/acc relative border-b border-[#1F1F1F]"
-                  style={{ "--d": `${1.05 + i * 0.1}s` }}
-                >
-                  {/* line that sweeps along the border on hover */}
-                  <span
-                    aria-hidden="true"
-                    className="pointer-events-none absolute -bottom-px left-0 h-[3px] w-full origin-left scale-x-0 bg-[#1F1F1F] transition-transform duration-500 ease-out group-hover/acc:scale-x-100"
-                  />
+          {/* Arrow button */}
+          <div className="order-4 lg:order-none lg:col-start-1 lg:col-end-3 lg:row-start-1 lg:self-end">
+            <a
+              href="#projects"
+              aria-label="View my work"
+              onMouseMove={magnet}
+              onMouseLeave={unmagnet}
+              style={{
+                "--d": "1.1s",
+                transition:
+                  "background-color .3s, color .3s, transform .5s cubic-bezier(.22,1,.36,1)",
+              }}
+              className="hero-rise group relative z-20 flex h-16 w-16 items-center justify-center border border-[#1F1F1F] hover:bg-[#1F1F1F] hover:text-[#FDDA66] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1F1F1F] lg:h-[132px] lg:w-[132px]"
+            >
+              {/* attention ring */}
+              <span
+                aria-hidden="true"
+                className="hero-ring pointer-events-none absolute inset-0 border border-[#1F1F1F] group-hover:invisible"
+              />
+              <svg
+                viewBox="0 0 64 64"
+                className="h-10 w-10 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 lg:h-16 lg:w-16"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                aria-hidden="true"
+              >
+                <path d="M12 52L52 12M24 12h28v28" />
+              </svg>
+            </a>
+          </div>
 
-                  <button
-                    type="button"
-                    onClick={() => setOpen(isOpen ? -1 : i)}
-                    aria-expanded={isOpen}
-                    className="flex w-full items-center justify-between gap-4 py-5 text-left text-xl font-extrabold uppercase tracking-tight transition-transform duration-300 ease-out hover:translate-x-1.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1F1F1F]"
-                    style={{ fontStretch: "100%" }}
-                  >
-                    {s.title}
-                    <Chevron open={isOpen} />
-                  </button>
+          {/* Right column */}
+          <aside className="order-3 relative z-20 flex flex-col justify-between gap-8 lg:order-none lg:col-start-9 lg:col-end-13 lg:row-start-1 lg:self-stretch lg:pt-8">
+            <p
+              className="hero-rise text-xl leading-snug sm:text-2xl lg:text-[1.5rem]"
+              style={{ "--d": "0.9s" }}
+            >
+              I enjoy turning ideas into products that actually work in the real
+              world. From backend architecture to AI-powered features and
+              polished interfaces, I focus on building reliable, user-centric
+              applications that solve meaningful problems.
+            </p>
 
+            <div>
+              {skills.map((s, i) => {
+                const isOpen = open === i;
+                return (
                   <div
-                    className={`grid transition-all duration-300 ease-out ${
-                      isOpen
-                        ? "grid-rows-[1fr] opacity-100"
-                        : "grid-rows-[0fr] opacity-0"
-                    }`}
+                    key={s.title}
+                    className="hero-rise group/acc relative border-b border-[#1F1F1F]"
+                    style={{ "--d": `${1.05 + i * 0.1}s` }}
                   >
-                    <div className="overflow-hidden">
-                      <p
-                        className={`max-w-[28ch] pb-6 text-base leading-snug text-[#1F1F1F]/60 transition-transform duration-500 ease-out ${
-                          isOpen ? "translate-y-0" : "-translate-y-3"
-                        }`}
-                      >
-                        {s.text}
-                      </p>
+                    {/* line that sweeps along the border on hover */}
+                    <span
+                      aria-hidden="true"
+                      className="pointer-events-none absolute -bottom-px left-0 h-[3px] w-full origin-left scale-x-0 bg-[#1F1F1F] transition-transform duration-500 ease-out group-hover/acc:scale-x-100"
+                    />
+
+                    <button
+                      type="button"
+                      onClick={() => setOpen(isOpen ? -1 : i)}
+                      aria-expanded={isOpen}
+                      className="flex w-full items-center justify-between gap-4 py-5 text-left text-xl font-extrabold uppercase tracking-tight transition-transform duration-300 ease-out hover:translate-x-1.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1F1F1F]"
+                      style={{ fontStretch: "100%" }}
+                    >
+                      {s.title}
+                      <Chevron open={isOpen} />
+                    </button>
+
+                    <div
+                      className={`grid transition-all duration-300 ease-out ${
+                        isOpen
+                          ? "grid-rows-[1fr] opacity-100"
+                          : "grid-rows-[0fr] opacity-0"
+                      }`}
+                    >
+                      <div className="overflow-hidden">
+                        <p
+                          className={`max-w-[28ch] pb-6 text-base leading-snug text-[#1F1F1F]/60 transition-transform duration-500 ease-out ${
+                            isOpen ? "translate-y-0" : "-translate-y-3"
+                          }`}
+                        >
+                          {s.text}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
-          </div>
-        </aside>
+                );
+              })}
+            </div>
+          </aside>
+        </div>
       </main>
-    </>
+    </div>
   );
 }
 
