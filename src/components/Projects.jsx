@@ -139,13 +139,16 @@ function ProjectCard({ project, index, total, progress, range, targetScale }) {
     const scale = useTransform(progress, range, [1, targetScale]);
     const dimOpacity = useTransform(progress, range, [0, 0.16]);
 
-    const stickyTop = `calc(5rem + ${index * 18}px)`;
+    const stickyTop = `calc(1.25rem + ${index * 10}px)`;
 
     return (
         <div
             ref={cardRef}
-            className="sticky flex items-start justify-center pb-14 sm:pb-20 last:pb-0"
-            style={{ top: stickyTop }}
+            className="sticky flex items-start justify-center pb-10 sm:pb-16 lg:pb-20 last:pb-0 lg:top-[var(--lg-top)]"
+            style={{
+                top: stickyTop,
+                "--lg-top": `calc(4.5rem + ${index * 18}px)`,
+            }}
         >
             <motion.article
                 style={{
@@ -173,12 +176,12 @@ function ProjectCard({ project, index, total, progress, range, targetScale }) {
                     className="pointer-events-none absolute inset-0 z-20 bg-black"
                 />
 
-                <div className="grid grid-cols-1 gap-8 p-6 sm:p-10 lg:grid-cols-[1.05fr_1fr] lg:gap-12 lg:p-12">
+                <div className="grid grid-cols-1 gap-5 p-5 sm:gap-8 sm:p-8 lg:grid-cols-[1.05fr_1fr] lg:gap-12 lg:p-12">
                     {/* Left Column: Index, Details, Tech, CTA */}
-                    <div className="flex flex-col justify-between gap-8">
+                    <div className="flex flex-col justify-between gap-5 sm:gap-8">
                         {/* Top: Number badge + stack indicator */}
                         <div className="flex items-center justify-between">
-                            <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/15 text-xs font-semibold tracking-[0.12em] text-black/75">
+                            <span className="inline-flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full border border-black/15 text-xs font-semibold tracking-[0.12em] text-black/75">
                                 {project.number}
                             </span>
 
@@ -193,15 +196,15 @@ function ProjectCard({ project, index, total, progress, range, targetScale }) {
                                 {project.year} • {project.category}
                             </p>
 
-                            <h3 className="mt-3 text-3xl font-black uppercase leading-[0.98] tracking-[-0.045em] text-black sm:text-4xl lg:text-[2.85rem]">
+                            <h3 className="mt-2 sm:mt-3 text-2xl font-black uppercase leading-[0.98] tracking-[-0.045em] text-black sm:text-4xl lg:text-[2.85rem]">
                                 {project.title}
                             </h3>
 
-                            <p className="mt-4 max-w-[44ch] text-base leading-relaxed text-black/65 sm:text-[17px]">
+                            <p className="mt-3 sm:mt-4 max-w-[44ch] text-sm leading-relaxed text-black/65 sm:text-base lg:text-[17px]">
                                 {project.description}
                             </p>
 
-                            <div className="mt-6 flex flex-wrap gap-2">
+                            <div className="mt-4 sm:mt-6 flex flex-wrap gap-1.5 sm:gap-2">
                                 {project.technologies.map((tech) => (
                                     <span
                                         key={tech}
@@ -270,7 +273,7 @@ function ProjectCard({ project, index, total, progress, range, targetScale }) {
                     </div>
 
                     {/* Right Column: Cover Image or Bespoke Placeholder */}
-                    <div className="relative min-h-[240px] overflow-hidden rounded-2xl border border-black/10 bg-[#0B0B0B] sm:min-h-[320px] lg:min-h-[390px]">
+                    <div className="relative h-[190px] overflow-hidden rounded-xl sm:rounded-2xl border border-black/10 bg-[#0B0B0B] sm:h-[260px] lg:h-auto lg:min-h-[390px]">
                         {project.image ? (
                             <img
                                 src={project.image}
@@ -298,7 +301,7 @@ function Projects() {
         <MotionConfig reducedMotion="user">
             <section
                 id="projects"
-                className="bg-black px-6 py-24 text-white sm:px-10 md:py-32 lg:px-12 lg:py-40"
+                className="bg-black px-5 py-16 text-white sm:px-10 sm:py-24 md:py-32 lg:px-12 lg:py-40"
             >
                 <div className="mx-auto max-w-[1400px]">
                     {/* =========================================
@@ -327,7 +330,7 @@ function Projects() {
                                 whileInView="show"
                                 viewport={{ once: true, amount: 0.4 }}
                                 className="
-                  text-[clamp(3.2rem,8vw,8.5rem)]
+                  text-[clamp(2.35rem,8vw,8.5rem)]
                   font-black
                   uppercase
                   leading-[0.9]
@@ -363,7 +366,7 @@ function Projects() {
                     {/* =========================================
                         STICKY STACKED PROJECT CARDS
                     ========================================= */}
-                    <div ref={stackRef} className="relative mt-20 sm:mt-24">
+                    <div ref={stackRef} className="relative mt-12 sm:mt-20 lg:mt-24">
                         {projects.map((project, index) => {
                             const targetScale = 1 - (projects.length - 1 - index) * 0.04;
                             const start = index / projects.length;
@@ -415,7 +418,7 @@ function Projects() {
                             </p>
                         </div>
 
-                        <span className="inline-flex cursor-default items-center gap-4 text-3xl font-medium tracking-[-0.03em] sm:text-4xl">
+                        <span className="inline-flex cursor-default items-center gap-4 text-2xl font-medium tracking-[-0.03em] sm:text-3xl md:text-4xl">
                             Always building
                             <span className="transition-transform duration-500 ease-out group-hover/cta:translate-x-2">
                                 →

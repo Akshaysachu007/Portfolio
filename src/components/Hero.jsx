@@ -130,18 +130,18 @@ function Hero() {
     <div id="home" className="min-h-screen flex flex-col bg-white">
       <style>{heroCss}</style>
 
-      <nav className="relative flex items-center justify-between px-6 py-7 sm:px-10 lg:px-12 bg-white">
+      <nav className="relative flex items-center justify-between px-5 py-5 sm:px-10 sm:py-7 lg:px-12 bg-white">
         {/* Menu */}
         <div
           className="menu-wrap group relative hero-rise"
           style={{ "--d": "0.1s" }}
         >
           {/* Menu button */}
-          <button className="flex items-center gap-3">
+          <button className="flex items-center gap-2 sm:gap-3">
             <Menu
-              size={28}
+              size={24}
               strokeWidth={1.5}
-              className="transition-transform duration-500 ease-out group-hover:scale-110 group-hover:rotate-90"
+              className="sm:h-7 sm:w-7 transition-transform duration-500 ease-out group-hover:scale-110 group-hover:rotate-90"
             />
 
             <span className="text-sm hidden sm:inline">Menu</span>
@@ -191,14 +191,14 @@ function Hero() {
         {/* Logo */}
         <div className="absolute left-1/2 -translate-x-1/2">
           <h1
-            className="hero-rise text-2xl font-black tracking-[-0.08em] transition-all duration-300 hover:-translate-y-1 hover:drop-shadow-lg cursor-pointer"
+            className="hero-rise text-xl sm:text-2xl font-black tracking-[-0.08em] transition-all duration-300 hover:-translate-y-1 hover:drop-shadow-lg cursor-pointer"
             style={{ "--d": "0.2s" }}
           >
             AKSHAY.
           </h1>
         </div>
 
-        <div className="flex items-center gap-4 sm:gap-7">
+        <div className="flex items-center gap-3 sm:gap-7">
           {/* Phone */}
           <a
             href="tel:+918129615095"
@@ -244,7 +244,7 @@ function Hero() {
 
       <main
         ref={mainRef}
-        className="group/hero relative flex flex-1 flex-col justify-between w-full overflow-hidden bg-white text-[#1F1F1F] px-6 pb-8 pt-2 sm:px-10 sm:pb-10 lg:px-12 lg:pb-12 lg:pt-4"
+        className="group/hero relative flex flex-1 flex-col justify-between w-full overflow-hidden bg-white text-[#1F1F1F] px-5 pb-8 pt-2 sm:px-10 sm:pb-10 lg:px-12 lg:pb-12 lg:pt-4"
         style={{ fontFamily: "'Archivo', system-ui, sans-serif" }}
       >
         {/* Soft amber glow that follows the cursor (decorative, sits behind everything) */}
@@ -324,14 +324,14 @@ function Hero() {
           <div className="order-1 relative z-20 lg:col-start-1 lg:col-end-8 lg:row-start-1 lg:self-start lg:pt-2">
             {/* Tag Pill behind the top edge of the headline */}
             <span
-              className="hero-rise relative z-10 inline-block overflow-hidden bg-amber-200 px-8 py-3 text-2xl text-white font-extrabold uppercase sm:px-12 sm:py-4 sm:text-3xl cursor-pointer select-none transition-all duration-300 ease-out hover:bg-amber-300 hover:text-slate-900 hover:-translate-y-1 hover:shadow-lg active:translate-y-0 before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/50 before:to-transparent before:transition-transform before:duration-700 hover:before:translate-x-full"
+              className="hero-rise relative z-10 inline-block overflow-hidden bg-amber-200 px-6 py-2.5 text-lg text-white font-extrabold uppercase sm:px-12 sm:py-4 sm:text-3xl cursor-pointer select-none transition-all duration-300 ease-out hover:bg-amber-300 hover:text-slate-900 hover:-translate-y-1 hover:shadow-lg active:translate-y-0 before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/50 before:to-transparent before:transition-transform before:duration-700 hover:before:translate-x-full"
               style={{ fontStretch: "125%", "--d": "0.15s" }}
             >
               Hi, there
             </span>
 
             <h1
-              className="relative z-20 -mt-5 sm:-mt-6 lg:-mt-7 text-[10vw] font-black uppercase leading-[0.92] tracking-tight sm:text-[8vw] lg:text-[5.2vw] cursor-pointer transition-all duration-500 ease-out hover:scale-[1.01] hover:tracking-normal active:scale-100"
+              className="relative z-20 -mt-3 sm:-mt-6 lg:-mt-7 text-[clamp(2.35rem,10.5vw,4rem)] font-black uppercase leading-[0.92] tracking-tight sm:text-[8vw] lg:text-[5.2vw] cursor-pointer transition-all duration-500 ease-out hover:scale-[1.01] hover:tracking-normal active:scale-100"
               style={{
                 fontStretch: "125%",
                 translate:
@@ -355,7 +355,7 @@ function Hero() {
           </div>
 
           {/* Photo — sized like the original large centerpiece, tucked beneath the title block */}
-          <div className="hero-photo order-2 relative z-10 flex h-[360px] w-full items-center justify-center overflow-hidden bg-[#ffffff] cursor-pointer sm:h-[440px] lg:col-start-3 lg:col-end-9 lg:row-start-1 lg:self-end lg:mt-20 lg:h-[500px] xl:h-[560px]">
+          <div className="hero-photo order-2 relative z-10 flex h-[280px] w-full items-center justify-center overflow-hidden bg-[#ffffff] cursor-pointer sm:h-[420px] lg:col-start-3 lg:col-end-9 lg:row-start-1 lg:self-end lg:mt-20 lg:h-[500px] xl:h-[560px]">
             <img
               src={iconImg}
               alt="Akshay R"
@@ -429,7 +429,7 @@ function Hero() {
                       type="button"
                       onClick={() => setOpen(isOpen ? -1 : i)}
                       aria-expanded={isOpen}
-                      className="flex w-full items-center justify-between gap-4 py-5 text-left text-xl font-extrabold uppercase tracking-tight transition-transform duration-300 ease-out hover:translate-x-1.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1F1F1F]"
+                      className="flex w-full items-center justify-between gap-4 py-4 sm:py-5 text-left text-lg sm:text-xl font-extrabold uppercase tracking-tight transition-transform duration-300 ease-out hover:translate-x-1.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1F1F1F]"
                       style={{ fontStretch: "100%" }}
                     >
                       {s.title}

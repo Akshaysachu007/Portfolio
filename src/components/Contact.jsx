@@ -64,7 +64,7 @@ function Contact() {
     };
 
     return (
-        <section id="contact" className="relative overflow-hidden bg-[#09090b] px-6 py-24 text-neutral-100 sm:px-10 md:py-32">
+        <section id="contact" className="relative overflow-hidden bg-[#09090b] px-5 py-16 text-neutral-100 sm:px-10 sm:py-24 md:py-32">
             <style>{`@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');`}</style>
 
             {/* one quiet glow */}
@@ -77,7 +77,7 @@ function Contact() {
                 viewport={{ once: true, margin: "-60px" }}
                 className="relative mx-auto max-w-[1100px]"
             >
-                <div className="grid gap-16 lg:grid-cols-12 lg:items-end">
+                <div className="grid gap-12 lg:grid-cols-12 lg:items-end lg:gap-16">
                     {/* Left */}
                     <div className="lg:col-span-7">
                         <motion.div variants={fadeUp} className="flex items-center gap-2.5 text-sm text-neutral-400">
@@ -88,7 +88,7 @@ function Contact() {
                             Available for full-time & freelance work
                         </motion.div>
 
-                        <h2 className="mt-8 text-5xl font-normal leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl" style={serif}>
+                        <h2 className="mt-6 text-4xl font-normal leading-[1.04] tracking-tight sm:mt-8 sm:text-6xl lg:text-7xl" style={serif}>
                             {["Let's build something", "extraordinary."].map((line, i) => (
                                 <span key={line} className="block overflow-hidden pb-[0.12em]">
                                     <motion.span variants={lineReveal} className={`block ${i === 0 ? "text-neutral-50" : "italic text-neutral-500"}`}>
@@ -161,7 +161,7 @@ function Contact() {
                 </div>
 
                 {/* Footer */}
-                <motion.div variants={fadeUp} className="mt-24 flex flex-col justify-between gap-6 sm:flex-row sm:items-center">
+                <motion.div variants={fadeUp} className="mt-16 flex flex-col justify-between gap-6 sm:mt-24 sm:flex-row sm:items-center">
                     <div className="flex items-center gap-7">
                         {socialLinks.map((s) => {
                             const Icon = s.icon;

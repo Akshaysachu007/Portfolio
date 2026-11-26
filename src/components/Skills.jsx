@@ -136,13 +136,17 @@ function SkillGroup({ group }) {
         group/row
         relative
         grid
-        gap-8
+        gap-6
         border-b
         border-black/10
-        py-12
-        md:grid-cols-[180px_0.8fr_1.2fr]
-        md:gap-12
-        md:py-16
+        py-10
+        sm:gap-8
+        sm:py-12
+        md:grid-cols-[110px_0.85fr_1.15fr]
+        md:gap-8
+        lg:grid-cols-[180px_0.8fr_1.2fr]
+        lg:gap-12
+        lg:py-16
       "
         >
             {/* spotlight */}
@@ -264,7 +268,7 @@ function Skills() {
         <MotionConfig reducedMotion="user">
             <section
                 id="skills"
-                className="overflow-hidden bg-white px-6 py-24 text-[#111111] sm:px-10 md:py-32 lg:px-12 lg:py-44"
+                className="overflow-hidden bg-white px-5 py-16 text-[#111111] sm:px-10 sm:py-24 md:py-32 lg:px-12 lg:py-44"
             >
                 {/* marquee keyframes */}
                 <style>{`
@@ -314,7 +318,7 @@ function Skills() {
                                 viewport={{ once: true, amount: 0.4 }}
                                 className="
                   max-w-[1100px]
-                  text-[clamp(3.2rem,7vw,7.75rem)]
+                  text-[clamp(2.35rem,7vw,7.75rem)]
                   font-black
                   uppercase
                   leading-[0.9]
@@ -356,7 +360,7 @@ function Skills() {
                     {/* =========================================
               SKILL GROUPS
           ========================================= */}
-                    <div className="mt-24 border-t border-black/10">
+                    <div className="mt-14 sm:mt-20 lg:mt-24 border-t border-black/10">
                         {skillGroups.map((group) => (
                             <SkillGroup key={group.number} group={group} />
                         ))}

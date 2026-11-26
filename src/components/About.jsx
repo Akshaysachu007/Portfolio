@@ -62,7 +62,7 @@ function About() {
         <MotionConfig reducedMotion="user">
             <section
                 id="about"
-                className="bg-black px-6 py-24 text-white sm:px-10 md:py-36 lg:px-12"
+                className="bg-black px-5 py-16 text-white sm:px-10 sm:py-24 md:py-36 lg:px-12"
             >
                 <div className="mx-auto max-w-[1500px]">
 
@@ -93,7 +93,7 @@ function About() {
                             viewport={{ once: true, amount: 0.4 }}
                             className="
                 max-w-[1100px]
-                text-[clamp(3.2rem,7.2vw,8rem)]
+                text-[clamp(2.35rem,7.2vw,8rem)]
                 font-black
                 uppercase
                 leading-[0.9]
@@ -131,7 +131,7 @@ function About() {
 
 
                     {/* Intro */}
-                    <div className="mt-24">
+                    <div className="mt-14 sm:mt-20 md:mt-24">
                         <Line />
 
                         <div className="grid gap-8 pt-10 md:grid-cols-[200px_1fr]">
@@ -180,7 +180,7 @@ function About() {
 
 
                     {/* Focus Areas */}
-                    <div className="mt-24">
+                    <div className="mt-14 sm:mt-20 md:mt-24">
 
                         <Line />
 
@@ -210,15 +210,22 @@ function About() {
                                     className="
                     group
                     relative
-                    min-h-[340px]
+                    flex
+                    min-h-[260px]
+                    flex-col
+                    justify-between
+                    gap-10
                     cursor-pointer
                     overflow-hidden
                     border-b
                     border-r
                     border-t
                     border-white/20
-                    p-8
-                    sm:p-10
+                    p-6
+                    sm:min-h-[320px]
+                    sm:p-8
+                    lg:min-h-[340px]
+                    lg:p-10
                   "
                                 >
                                     {/* White fill that slides up on hover */}
@@ -255,7 +262,7 @@ function About() {
                                     </div>
 
                                     {/* Content */}
-                                    <div className="absolute bottom-10 left-8 right-8 z-10 sm:left-10 sm:right-10">
+                                    <div className="relative z-10">
 
                                         <h3
                                             className="

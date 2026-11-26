@@ -66,7 +66,7 @@ function Experience() {
         <MotionConfig reducedMotion="user">
             <section
                 id="experience"
-                className="bg-white px-6 py-24 text-[#111111] sm:px-10 md:py-32 lg:px-12 lg:py-44"
+                className="bg-white px-5 py-16 text-[#111111] sm:px-10 sm:py-24 md:py-32 lg:px-12 lg:py-44"
             >
                 <div className="mx-auto max-w-[1500px]">
 
@@ -105,7 +105,7 @@ function Experience() {
                                 viewport={{ once: true, amount: 0.4 }}
                                 className="
                   max-w-[1100px]
-                  text-[clamp(3.2rem,7vw,7.75rem)]
+                  text-[clamp(2.35rem,7vw,7.75rem)]
                   font-black
                   uppercase
                   leading-[0.9]
@@ -144,7 +144,7 @@ function Experience() {
                     </div>
 
                     {/* EXPERIENCE LIST */}
-                    <div ref={listRef} className="relative mt-24 border-t border-black/10">
+                    <div ref={listRef} className="relative mt-14 sm:mt-20 md:mt-24 border-t border-black/10">
 
                         {/* timeline spine (desktop): faint track + dark line that fills on scroll */}
                         <div
@@ -239,11 +239,11 @@ function Experience() {
                                     <h3
                                         className="
                       mt-5
-                      text-[clamp(2.6rem,5.4vw,6rem)]
+                      text-[clamp(1.85rem,5.4vw,6rem)]
                       font-black
                       uppercase
-                      leading-[0.9]
-                      tracking-[-0.065em]
+                      leading-[0.94]
+                      tracking-[-0.055em]
                       transition-transform
                       duration-500
                       ease-[cubic-bezier(0.22,1,0.36,1)]
