@@ -193,7 +193,7 @@ function SkillGroup({ group }) {
                     {group.title}
                 </h3>
 
-                <p className="mt-5 max-w-[340px] text-base leading-7 text-black/50">
+                <p className="mt-4 sm:mt-5 max-w-[340px] text-base leading-[1.65] text-black/70">
                     {group.description}
                 </p>
             </motion.div>
@@ -227,7 +227,7 @@ function SkillGroup({ group }) {
                                 className="
                   text-base
                   font-medium
-                  text-black/65
+                  text-black/80
                   transition-all
                   duration-500
                   ease-[cubic-bezier(0.22,1,0.36,1)]

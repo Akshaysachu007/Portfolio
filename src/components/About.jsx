@@ -169,7 +169,7 @@ function About() {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.7, delay: 0.5, ease: EASE }}
-                                    className="mt-8 max-w-[720px] text-base leading-7 text-white/60 sm:text-lg"
+                                    className="mt-6 sm:mt-8 max-w-[720px] text-base leading-[1.65] text-white/75 sm:text-lg sm:leading-7"
                                 >
                                     I enjoy turning real-world problems into practical,
                                     well-structured software.
@@ -288,12 +288,13 @@ function About() {
                         mt-4
                         max-w-[360px]
                         text-base
-                        leading-7
-                        text-white/65
+                        leading-[1.65]
+                        text-white/75
                         transition-colors
                         duration-500
-                        group-hover:text-black/70
+                        group-hover:text-black/75
                         sm:text-lg
+                        sm:leading-7
                       "
                                         >
                                             {item.text}
