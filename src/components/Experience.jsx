@@ -257,12 +257,12 @@ function Experience() {
                                         {experience.company}
                                     </p>
 
-                                    <p className="mt-6 max-w-[680px] text-lg leading-8 text-black/55 transition-colors duration-500 group-hover:text-black/75">
+                                    <p className="mt-5 sm:mt-6 max-w-[680px] text-base leading-[1.65] text-black/70 transition-colors duration-500 group-hover:text-black/85 sm:text-lg sm:leading-8">
                                         {experience.description}
                                     </p>
 
                                     {/* TECHNOLOGIES */}
-                                    <div className="mt-8 flex flex-wrap gap-2.5">
+                                    <div className="mt-6 sm:mt-8 flex flex-wrap gap-2 sm:gap-2.5">
                                         {experience.technologies.map((technology) => (
                                             <span
                                                 key={technology}
@@ -270,18 +270,20 @@ function Experience() {
                           cursor-default
                           rounded-full
                           border
-                          border-black/15
-                          px-4
-                          py-2
+                          border-black/20
+                          px-3.5
+                          py-1.5
                           text-sm
                           font-medium
-                          text-black/50
+                          text-black/70
                           transition-all
                           duration-300
                           hover:border-[#111111]
                           hover:bg-[#111111]
                           hover:text-white
                           group-hover:border-black/30
+                          sm:px-4
+                          sm:py-2
                         "
                                             >
                                                 {technology}

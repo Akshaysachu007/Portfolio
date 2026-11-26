@@ -192,15 +192,15 @@ function ProjectCard({ project, index, total, progress, range, targetScale }) {
 
                         {/* Middle: Meta, Title, Description, Tech */}
                         <div>
-                            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-black/45">
+                            <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-black/60 sm:text-xs sm:tracking-[0.18em]">
                                 {project.year} • {project.category}
                             </p>
 
-                            <h3 className="mt-2 sm:mt-3 text-2xl font-black uppercase leading-[0.98] tracking-[-0.045em] text-black sm:text-4xl lg:text-[2.85rem]">
+                            <h3 className="mt-2 sm:mt-3 text-[1.65rem] font-black uppercase leading-[1.02] tracking-[-0.04em] text-black sm:text-4xl lg:text-[2.85rem]">
                                 {project.title}
                             </h3>
 
-                            <p className="mt-3 sm:mt-4 max-w-[44ch] text-sm leading-relaxed text-black/65 sm:text-base lg:text-[17px]">
+                            <p className="mt-3 sm:mt-4 max-w-[44ch] text-[15.5px] leading-[1.6] text-black/75 sm:text-base lg:text-[17px]">
                                 {project.description}
                             </p>
 
@@ -208,7 +208,7 @@ function ProjectCard({ project, index, total, progress, range, targetScale }) {
                                 {project.technologies.map((tech) => (
                                     <span
                                         key={tech}
-                                        className="rounded-full border border-black/10 bg-black/[0.03] px-3 py-1 text-xs font-medium text-black/70"
+                                        className="rounded-full border border-black/15 bg-black/[0.04] px-3 py-1 text-[13px] font-medium text-black/80 sm:text-xs"
                                     >
                                         {tech}
                                     </span>
@@ -231,13 +231,14 @@ function ProjectCard({ project, index, total, progress, range, targetScale }) {
                   overflow-hidden
                   rounded-full
                   border
-                  border-black/20
+                  border-black/25
                   px-6
                   py-3
-                  text-xs
+                  text-[13px]
+                  sm:text-xs
                   font-semibold
                   uppercase
-                  tracking-[0.14em]
+                  tracking-[0.12em]
                   text-black
                   transition-colors
                   duration-500
@@ -354,7 +355,7 @@ function Projects() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.8, delay: 0.4, ease: EASE }}
-                                className="mt-8 max-w-[560px] text-lg leading-8 text-white/55"
+                                className="mt-6 sm:mt-8 max-w-[560px] text-base leading-[1.65] text-white/70 sm:text-lg sm:leading-8"
                             >
                                 A selection of applications, experiments and systems I've built
                                 while working across backend engineering, AI and full-stack

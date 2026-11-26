@@ -260,7 +260,7 @@ function Hero() {
         {/* Top bar — balanced on mobile, right-aligned on desktop */}
         <header className="relative z-20 flex items-center justify-between lg:justify-end">
           <span
-            className="hero-rise text-xs font-semibold uppercase tracking-[0.16em] text-[#1F1F1F]/60 sm:hidden"
+            className="hero-rise text-sm font-semibold uppercase tracking-[0.14em] text-[#1F1F1F]/70 sm:hidden"
             style={{ "--d": "0.3s" }}
           >
             Follow me
@@ -408,7 +408,7 @@ function Hero() {
           {/* Right column */}
           <aside className="order-3 relative z-20 flex flex-col justify-between gap-6 sm:gap-8 lg:order-none lg:col-start-9 lg:col-end-13 lg:row-start-1 lg:self-stretch lg:pt-8">
             <p
-              className="hero-rise text-lg leading-snug sm:text-2xl lg:text-[1.5rem]"
+              className="hero-rise text-base leading-[1.6] text-[#1F1F1F]/85 sm:text-xl sm:leading-snug lg:text-[1.5rem]"
               style={{ "--d": "0.9s" }}
             >
               I enjoy turning ideas into products that actually work in the real
@@ -452,7 +452,7 @@ function Hero() {
                     >
                       <div className="overflow-hidden">
                         <p
-                          className={`max-w-[28ch] pb-6 text-base leading-snug text-[#1F1F1F]/60 transition-transform duration-500 ease-out ${
+                          className={`max-w-[34ch] pb-5 text-base leading-relaxed text-[#1F1F1F]/70 transition-transform duration-500 ease-out ${
                             isOpen ? "translate-y-0" : "-translate-y-3"
                           }`}
                         >
